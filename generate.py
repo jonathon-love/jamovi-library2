@@ -63,7 +63,8 @@ async def generate_index():
         'title',
         'version',
         'authors',
-        'description'
+        'description',
+        'website',
     ]
 
     with open('modules.yaml', 'r') as stream:
@@ -92,6 +93,11 @@ async def generate_index():
 
     with open('index', 'w', encoding='utf-8') as file:
         dump(index, file)
+
+    proc = await create_subprocess_shell('appveyor PushArtifact index -FileName index -DeploymentName Index')
+    rc = await proc.wait()
+    if rc != 0:
+        raise RuntimeError('Command failed: "{}"'.format(cmd))
 
 asyncio.run(generate_modules())
 asyncio.run(generate_index())
