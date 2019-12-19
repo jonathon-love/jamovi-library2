@@ -8,6 +8,11 @@ import asyncio
 from asyncio import create_subprocess_shell
 
 
+if sys.platform == 'win32':
+    loop = asyncio.ProactorEventLoop()
+    asyncio.set_event_loop(loop)
+
+
 COMMANDS = [
     { 'cmd': 'git init', 'cwd': '{name}' },
     { 'cmd': 'git remote add origin {url}', 'cwd': '{name}' },
@@ -33,6 +38,13 @@ async def generate_modules():
                 proc = await create_subprocess_shell(cmd, cwd=cwd)
                 rc = await proc.wait()
                 if rc != 0:
-                    raise RuntimeError('Command failed')
+                    raise RuntimeError('Command failed: "{}"'.format(cmd))
 
-asyncio.run(generate_modules())
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+try:
+    loop.run_until_complete(generate_modules())
+finally:
+    loop.close()
+    asyncio.set_event_loop(None)
