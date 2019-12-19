@@ -9,17 +9,13 @@ import asyncio
 from asyncio import create_subprocess_shell
 
 
-if sys.platform == 'win32':
-    loop = asyncio.ProactorEventLoop()
-    asyncio.set_event_loop(loop)
-
-
 COMMANDS = [
     { 'cmd': 'git init', 'cwd': '{name}' },
     { 'cmd': 'git remote add origin {url}', 'cwd': '{name}' },
     { 'cmd': 'git fetch origin {commit}', 'cwd': '{name}' },
     { 'cmd': 'git reset --hard FETCH_HEAD', 'cwd': '{name}' },
     { 'cmd': 'node jamovi-compiler/index.js --build {name} --home jamovi-1.1.7.0-win64', 'cwd': '.' },
+    { 'cmd': 'appveyor PushArtifact {name}_*.jmo -FileName {outdir}/{name}.jmo -DeploymentName Modules' },
 ]
 
 async def generate_modules():
@@ -33,19 +29,12 @@ async def generate_modules():
 
             for cmd in COMMANDS:
                 cwd = cmd['cwd']
-                cwd = cwd.format(**module)
+                cwd = cwd.format(outdir='win64/R3.6', **module)
                 cmd = cmd['cmd']
-                cmd = cmd.format(**module)
+                cmd = cmd.format(outdir='win64/R3.6', **module)
                 proc = await create_subprocess_shell(cmd, cwd=cwd)
                 rc = await proc.wait()
                 if rc != 0:
                     raise RuntimeError('Command failed: "{}"'.format(cmd))
 
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-try:
-    loop.run_until_complete(generate_modules())
-finally:
-    loop.close()
-    asyncio.set_event_loop(None)
+asyncio.run(generate_modules())
