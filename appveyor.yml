@@ -23,8 +23,6 @@ build_script:
   - "%PYTHON%\\python generate.py"
 
 artifacts:
-  - path: index
-    name: Index
   - path: '--ERROR--*.log'
     name: Error Logs
   - path: '*.log'
