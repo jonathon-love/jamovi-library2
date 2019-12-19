@@ -14,8 +14,8 @@ COMMANDS = [
     { 'cmd': 'git remote add origin {url}', 'cwd': '{name}' },
     { 'cmd': 'git fetch origin {commit}', 'cwd': '{name}' },
     { 'cmd': 'git reset --hard FETCH_HEAD', 'cwd': '{name}' },
-    { 'cmd': 'node jamovi-compiler/index.js --build {name} --home jamovi-1.1.9.0-R3.6-win64' },
-    { 'cmd': 'appveyor PushArtifact {name}_*.jmo -FileName {outdir}/{name}.jmo -DeploymentName Modules' },
+    { 'cmd': 'node jamovi-compiler/index.js --build {name} --home jamovi-1.1.9.0-R3.6-win64 --jmo {name}.jmo' },
+    { 'cmd': 'appveyor PushArtifact {name}.jmo -FileName {outdir}/{name}.jmo -DeploymentName Modules' },
 ]
 
 async def generate_modules():
