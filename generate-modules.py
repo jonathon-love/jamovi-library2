@@ -35,11 +35,4 @@ async def generate_modules():
                 if rc != 0:
                     raise RuntimeError('Command failed')
 
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-try:
-    loop.run_until_complete(generate_modules())
-finally:
-    loop.close()
-    asyncio.set_event_loop(None)
+asyncio.run(generate_modules())
