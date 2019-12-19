@@ -16,16 +16,19 @@ from asyncio import create_subprocess_shell
 
 async def generate_modules():
 
-    COMMANDS = [
+    PREP_COMMANDS = [
         { 'cmd': 'git init', 'cwd': '{name}' },
         { 'cmd': 'git remote add origin {url}', 'cwd': '{name}' },
         { 'cmd': 'git pull origin master', 'cwd': '{name}' },
         { 'cmd': 'git checkout {commit}', 'cwd': '{name}' },
-        { 'cmd': ('RD build /Q /S & echo' if os.name == 'nt' else 'rm -rf build'), 'cwd': '{name}' },
+        { 'cmd': ('RD build /Q /S & echo ""' if os.name == 'nt' else 'rm -rf build'), 'cwd': '{name}' },
         # { 'cmd': 'git fetch origin {commit}', 'cwd': '{name}' },
         # { 'cmd': 'git reset --hard FETCH_HEAD', 'cwd': '{name}' },
+    ]
+
+    BUILD_COMMANDS = [
         { 'cmd': 'node jamovi-compiler/index.js --build {name} --home jamovi-1.1.9.0-R3.6-win64 --jmo {name}.jmo' },
-        { 'cmd': 'appveyor PushArtifact {name}.jmo -FileName {outdir}/{name}.jmo -DeploymentName Modules' },
+        { 'cmd': 'appveyor PushArtifact {name}.jmo -FileName {outdir}/{name}-{version}.jmo -DeploymentName Modules' },
     ]
 
     with open('modules.yaml', 'r') as stream:
@@ -35,7 +38,21 @@ async def generate_modules():
         dir = module['name']
         os.makedirs(dir, exist_ok=True)
 
-        for cmd in COMMANDS:
+        for cmd in PREP_COMMANDS:
+            cwd = cmd.get('cwd', '.')
+            cwd = cwd.format(outdir='win64/R3.6', **module)
+            cmd = cmd['cmd']
+            cmd = cmd.format(outdir='win64/R3.6', **module)
+            proc = await create_subprocess_shell(cmd, cwd=cwd)
+            rc = await proc.wait()
+            if rc != 0:
+                raise RuntimeError('Command failed: "{}"'.format(cmd))
+
+        with open('{}/jamovi.yaml'.format(dir), 'r') as stream:
+            defn = load(stream, Loader=SafeLoader)
+            module['version'] = defn['version']
+
+        for cmd in BUILD_COMMANDS:
             cwd = cmd.get('cwd', '.')
             cwd = cwd.format(outdir='win64/R3.6', **module)
             cmd = cmd['cmd']
