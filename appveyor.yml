@@ -1,0 +1,43 @@
+
+
+environment:
+    RTOOLS_URL: https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe
+    JAMOVI_URL: https://www.jamovi.org/downloads/jamovi-1.1.7.0-R3.6-win64.zip
+    PYTHON: "C:\\Python36-x64"
+
+install:
+  - "%PYTHON%\\python -m pip install -r requirements.txt"
+  # # - ps: Invoke-WebRequest $env:RTOOLS_URL -OutFile Rtools-setup.exe
+  # # - ps: Start-Process -FilePath ./Rtools-setup.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
+  # # - ps: Invoke-WebRequest $env:JAMOVI_URL -OutFile jamovi-setup.exe
+  # # - ps: Start-Process -FilePath ./jamovi-setup.exe /S
+  - ps: Invoke-WebRequest $env:JAMOVI_URL -OutFile jamovi.zip
+  - ps: Expand-Archive -Path jamovi.zip -DestinationPath .
+  - git submodule update --init --recursive
+  - cd jamovi-compiler
+  - npm install
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - tzutil /s "GMT Standard Time"
+
+build_script:
+  - "%PYTHON%\\python generate-modules.py"
+
+artifacts:
+  - path: index
+    name: Index
+  - path: '--ERROR--*.log'
+    name: Error Logs
+  - path: '*.jmo'
+    name: Modules
+  - path: '*.log'
+    name: Build Logs
+
+# deploy:
+#     provider: S3
+#     access_key_id:
+#         secure: N8joJYrY0qe2TVtDes16QkENBiJxNI5mGyQJVPNvwBI=
+#     secret_access_key:
+#         secure: nY0Q0+LKzvSchTdNB2rrLvqWQYCubOnWO5OpZ1tLgLWGRQad5HWDK2jJ7Q4WDnV3
+#     bucket: jamovi-library
+#     region: us-east-1
+#     set_public: true

@@ -1,0 +1,3 @@
+[submodule "jamovi-compiler"]
+	path = jamovi-compiler
+	url = https://github.com/jamovi/jamovi-compiler.git

@@ -1,0 +1,5 @@
+
+modules:
+    - name: walrus
+      url: https://github.com/jamovi/walrus.git
+      commit: 639c2bd6e3df8fcd7825234f58dfb1599b99ebca
