@@ -28,7 +28,7 @@ async def generate_modules():
             os.makedirs(dir, exist_ok=True)
 
             for cmd in COMMANDS:
-                cwd = cmd.get('cwd', None)
+                cwd = cmd.get('cwd', '.')
                 cwd = cwd.format(outdir='win64/R3.6', **module)
                 cmd = cmd['cmd']
                 cmd = cmd.format(outdir='win64/R3.6', **module)
