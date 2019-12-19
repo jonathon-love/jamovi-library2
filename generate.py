@@ -58,6 +58,8 @@ async def generate_index():
     with open('modules.yaml', 'r') as stream:
         library = load(stream, Loader=SafeLoader)
 
+    modules = [ ]
+
     for module in library['modules']:
         name = module['name']
         jmo = '{}.jmo'.format(name)
