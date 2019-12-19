@@ -1,7 +1,7 @@
 
-from oyaml import load
-from oyaml import dump
-from oyaml import SafeLoader
+from yaml import load
+from yaml import dump
+from yaml import SafeLoader
 
 import os
 import asyncio
