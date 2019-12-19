@@ -3,7 +3,7 @@
 environment:
     RTOOLS_URL: https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe
     JAMOVI_URL: https://www.jamovi.org/downloads/jamovi-1.1.7.0-R3.6-win64.zip
-    PYTHON: "C:\\Python36-x64"
+    PYTHON: "C:\\Python37-x64"
 
 install:
   - "%PYTHON%\\python -m pip install -r requirements.txt"
