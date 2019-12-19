@@ -45,7 +45,7 @@ async def generate_modules():
             if rc != 0:
                 raise RuntimeError('Command failed: "{}"'.format(cmd))
 
-        with open('{}/jamovi.yaml'.format(dir), 'r') as stream:
+        with open('{}/jamovi/0000.yaml'.format(dir), 'r') as stream:
             defn = load(stream, Loader=SafeLoader)
             module['version'] = defn['version']
 
