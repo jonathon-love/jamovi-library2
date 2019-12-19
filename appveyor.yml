@@ -13,6 +13,7 @@ install:
   # - ps: Start-Process -FilePath ./jamovi-setup.exe /S -Wait
   - ps: Invoke-WebRequest $env:JAMOVI_URL -OutFile jamovi.zip
   - ps: Expand-Archive -Path jamovi.zip -DestinationPath .
+  - dir
   - git submodule update --init --recursive
   - cd jamovi-compiler
   - npm install
