@@ -20,7 +20,7 @@ install:
   - tzutil /s "GMT Standard Time"
 
 build_script:
-  - "%PYTHON%\\python generate-modules.py"
+  - "%PYTHON%\\python generate.py"
 
 artifacts:
   - path: index
