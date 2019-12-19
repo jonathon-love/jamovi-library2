@@ -14,6 +14,9 @@ import asyncio
 from asyncio import create_subprocess_shell
 
 
+platform = 'win64/R3.6'
+
+
 async def generate_modules():
 
     PREP_COMMANDS = [
@@ -39,7 +42,7 @@ async def generate_modules():
         os.makedirs(dir, exist_ok=True)
 
         for cmd in PREP_COMMANDS:
-            cmd = cmd.format(outdir='win64/R3.6', **module)
+            cmd = cmd.format(outdir=platform, **module)
             proc = await create_subprocess_shell(cmd, cwd=dir)
             rc = await proc.wait()
             if rc != 0:
@@ -50,7 +53,7 @@ async def generate_modules():
             module['version'] = defn['version']
 
         for cmd in BUILD_COMMANDS:
-            cmd = cmd.format(outdir='win64/R3.6', **module)
+            cmd = cmd.format(outdir=platform, **module)
             proc = await create_subprocess_shell(cmd)
             rc = await proc.wait()
             if rc != 0:
@@ -94,7 +97,7 @@ async def generate_index():
     with open('index', 'w', encoding='utf-8') as file:
         dump(index, file)
 
-    proc = await create_subprocess_shell('appveyor PushArtifact index -FileName index -DeploymentName Index')
+    proc = await create_subprocess_shell('appveyor PushArtifact index -FileName {}/index -DeploymentName Index'.format(platform))
     rc = await proc.wait()
     if rc != 0:
         raise RuntimeError('Command failed: "{}"'.format(cmd))
