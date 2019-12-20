@@ -82,9 +82,11 @@ async def generate_index():
         with zip.open('{}/jamovi.yaml'.format(name)) as stream:
             content = stream.read()
             data = load(content, Loader=SafeLoader)
+            version = data['version']
             final = OrderedDict()
             for key in keep_info:
                 final[key] = data.get(key)
+            final['architectures'] = [ '*': { 'name': '*', 'path': '{}-{}.jmo'.format(name, version) } ]
             modules.append(final)
 
     modules = sorted(modules, key=lambda x: x['name'])

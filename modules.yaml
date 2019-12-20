@@ -1,20 +1,20 @@
 
 modules:
-    - name: behaviorchange
-      url: https://gitlab.com/r-packages/behaviorchange.git
-      commit: 0e6bbfc5c16df598b9e72182a2b73d4371532f10
-    - name: MAJOR
-      url: https://github.com/kylehamilton/MAJOR.git
-      commit: 8d11d3d70df5d07ba9b8410cf3b0cf1b3575b87d
+    # - name: behaviorchange
+    #   url: https://gitlab.com/r-packages/behaviorchange.git
+    #   commit: 0e6bbfc5c16df598b9e72182a2b73d4371532f10
+    # - name: MAJOR
+    #   url: https://github.com/kylehamilton/MAJOR.git
+    #   commit: 8d11d3d70df5d07ba9b8410cf3b0cf1b3575b87d
     - name: Statkat
       url: https://github.com/rivkamdevries/Statkat.git
       commit: bf09cf4058234a242921267680c233fff7e14dc4
     - name: TOSTER
       url: https://github.com/Lakens/TOSTER.git
       commit: 64f4b7a9fa91c88e8c0ebe9ee453322a8757541a
-    - name: ufs
-      url: https://gitlab.com/r-packages/ufs.git
-      commit: caafe1072351af90577d8eb255c2cf52c8c07aeb
+    # - name: ufs
+    #   url: https://gitlab.com/r-packages/ufs.git
+    #   commit: caafe1072351af90577d8eb255c2cf52c8c07aeb
     - name: walrus
       url: https://github.com/jamovi/walrus.git
       commit: 639c2bd6e3df8fcd7825234f58dfb1599b99ebca
