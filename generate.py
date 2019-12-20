@@ -86,7 +86,7 @@ async def generate_index():
             final = OrderedDict()
             for key in keep_info:
                 final[key] = data.get(key)
-            final['architectures'] = [ '*': { 'name': '*', 'path': '{}-{}.jmo'.format(name, version) } ]
+            final['architectures'] = [ { 'name': '*', 'path': '{}-{}.jmo'.format(name, version) } ]
             modules.append(final)
 
     modules = sorted(modules, key=lambda x: x['name'])
