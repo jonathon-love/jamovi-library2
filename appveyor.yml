@@ -28,12 +28,12 @@ artifacts:
   - path: '*.log'
     name: Build Logs
 
-# deploy:
-#     provider: S3
-#     access_key_id:
-#         secure: N8joJYrY0qe2TVtDes16QkENBiJxNI5mGyQJVPNvwBI=
-#     secret_access_key:
-#         secure: nY0Q0+LKzvSchTdNB2rrLvqWQYCubOnWO5OpZ1tLgLWGRQad5HWDK2jJ7Q4WDnV3
-#     bucket: jamovi-library
-#     region: us-east-1
-#     set_public: true
+deploy:
+    provider: S3
+    access_key_id:
+        secure: N8joJYrY0qe2TVtDes16QkENBiJxNI5mGyQJVPNvwBI=
+    secret_access_key:
+        secure: nY0Q0+LKzvSchTdNB2rrLvqWQYCubOnWO5OpZ1tLgLWGRQad5HWDK2jJ7Q4WDnV3
+    bucket: jamovi-library
+    region: us-east-1
+    set_public: true
