@@ -1,20 +1,70 @@
 
 modules:
-    - name: behaviorchange
-      url: https://gitlab.com/r-packages/behaviorchange.git
-      commit: 0e6bbfc5c16df598b9e72182a2b73d4371532f10
+    - name: scatr
+      url: https://github.com/raviselker/scatr.git
+      commit: b7eb1af9d223448128eda74aa77037e23bd543f9
+    - name: Rj
+      url: https://github.com/jonathon-love/Rj.git
+      commit: 213a6b6776797dcefa9150eb4d4337b6252a2cc1
+    # - name: jpower
+    #   url: https://github.com/richarddmorey/jpower.git
+    #   commit: e15754594adb5294c293c604aab5769e64e95475
+    - name: gamlj
+      url: https://github.com/gamlj/gamlj.git
+      commit: e9686bd3a7632802944c3882d3cb3b7428648310
+    - name: jAMM
+      url: https://github.com/jamovi-amm/jamm.git
+      commit: 4604a55cd5d5837398f16ffd383351bcba38563d
+    - name: jsq
+      url: https://github.com/jonathon-love/jsq.git
+      commit: 028d1aa696062749cf277e7cec9d29f96cfc8a30
+    - name: medmod
+      url: https://github.com/raviselker/medmod.git
+      commit: 6f81b0fa009a97cf11c808f7ee561097e7c1310a
     - name: MAJOR
       url: https://github.com/kylehamilton/MAJOR.git
       commit: 8d11d3d70df5d07ba9b8410cf3b0cf1b3575b87d
-    - name: Statkat
-      url: https://github.com/rivkamdevries/Statkat.git
-      commit: bf09cf4058234a242921267680c233fff7e14dc4
-    - name: TOSTER
-      url: https://github.com/Lakens/TOSTER.git
-      commit: 64f4b7a9fa91c88e8c0ebe9ee453322a8757541a
-    - name: ufs
-      url: https://gitlab.com/r-packages/ufs.git
-      commit: caafe1072351af90577d8eb255c2cf52c8c07aeb
     - name: walrus
       url: https://github.com/jamovi/walrus.git
       commit: 639c2bd6e3df8fcd7825234f58dfb1599b99ebca
+    - name: TOSTER
+      url: https://github.com/Lakens/TOSTER.git
+      commit: 64f4b7a9fa91c88e8c0ebe9ee453322a8757541a
+    - name: deathwatch
+      url: https://github.com/jonathon-love/deathwatch.git
+      commit: 48f5876d0a447c3a9b37973c4f6889f4d1355c16
+    - name: flexplot
+      url: https://github.com/dustinfife/flexplot.git
+      commit: f4f263bc8295f4fc7c2e5b9d21c462bb170f8a82
+    - name: distrACTION
+      url: https://github.com/Mrihs/distrACTION.git
+      commit: d1b39aad3ae05ee58985d542e29340aee9730983
+    # - name: lsj-data
+    #   url: https://github.com/davidfoxcroft/lsj-data.git
+    #   commit: 635608b86c103406357377a921a4b09697c75e52
+    #   precompiled: true
+    # - name: r-datasets
+    #   url: https://github.com/jamovi/r-datasets.git
+    #   commit: d093742b238313538ba2994df3d31177302a5c8b
+    #   precompiled: true
+    - name: Statkat
+      url: https://github.com/rivkamdevries/Statkat.git
+      commit: bf09cf4058234a242921267680c233fff7e14dc4
+    - name: ufs
+      url: https://gitlab.com/r-packages/ufs.git
+      commit: caafe1072351af90577d8eb255c2cf52c8c07aeb
+    - name: behaviorchange
+      url: https://gitlab.com/r-packages/behaviorchange.git
+      commit: 0e6bbfc5c16df598b9e72182a2b73d4371532f10
+    - name: psychoPDA
+      url: https://github.com/lucasjfriesen/jamoviPsychoPDA.git
+      commit: 11c9457c716620ccce51009bedfb0892e16dc90b
+    - name: blandr
+      url: https://github.com/jonathon-love/blandr.git
+      commit: fdf731b9d4907d635a37ec72de74d50d4f906122
+    - name: jmvbaseR
+      url: https://github.com/jamovi/jmvbaseR.git
+      commit: dd411c6578e854c981d64bbe91d1a2e1fea1ade8
+    - name: jmvarcade
+      url: https://github.com/raviselker/jmvarcade.git
+      commit: a57dcd072359e247c75ddfd14195572e4b6d1a4b
